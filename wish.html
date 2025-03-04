@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .birthday-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.2em;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 1em;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #e91e63;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #d81b60;
+        }
+         /* button */
+         .balloon {
+    position: absolute;
+    bottom: 0; /* Start from the bottom */
+    font-size: 2rem; /* Size of the balloon */
+    animation: float 5s forwards; /* Animation effect */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0); /* Start position */
+    }
+    100% {
+        transform: translateY(-100vh); /* End position (float upwards) */
+        opacity: 0; /* Fade out */
+    }
+}
+
+    </style>
+    <script>
+        function makeWish() {
+            alert("Thank you for your wish!");
+        }
+    </script>
+</head>
+<body>
+
+    <div class="birthday-container">
+        <h1>Happy Birthday!</h1>
+        <p>Dear <span>Poe Thu Aung Ye</span>,</p>
+        <p>On this special day, I want to wish you all the happiness in the world. You are a shining light in the lives of everyone around you, and today we celebrate you!</p>
+        <p>May your day be filled with laughter, love, and unforgettable moments. You deserve all the wonderful things life has to offer.</p>
+        <p>Happy Birthday to the most amazing girl!</p>
+        
+        <button onclick="releaseBalloons()">Make a Congratulate</button>
+
+
+        <div class="footer">
+            <p>With all my love,</p>
+            <div id="deviceInfo"></div>
+
+        </div>
+    </div>
+<script>
+  function releaseBalloons() {
+    const balloonContainer = document.querySelector('.birthday-container'); // Ensure this targets the correct container
+    const numberOfBalloons = 10; // Specify how many balloons to release
+
+    for (let i = 0; i < numberOfBalloons; i++) {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon'); // Add a class for styling
+        balloon.textContent = '🎈'; // Balloon emoji
+        balloon.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+        balloon.style.animationDuration = Math.random() * 3 + 2 + 's'; // Random duration for floating effect
+        balloonContainer.appendChild(balloon);
+
+        // Remove balloon after animation
+        balloon.addEventListener('animationend', () => {
+            balloon.remove();
+        });
+    }
+}
+
+// Display device information
+function getUserDeviceInfo() {
+    const userAgent = navigator.userAgent;
+    let deviceInfo = "Unknown Device";
+
+    // Check for common mobile user agent strings
+    if (/android/i.test(userAgent)) {
+        deviceInfo = "Android Device";
+    } else if (/iPhone/i.test(userAgent)) {
+        deviceInfo = "iPhone";
+    } else if (/iPad/i.test(userAgent)) {
+        deviceInfo = "iPad";
+    } else if (/iPod/i.test(userAgent)) {
+        deviceInfo = "iPod";
+    } else if (/Windows Phone/i.test(userAgent)) {
+        deviceInfo = "Windows Phone";
+    }
+
+    // Display the device info
+    document.getElementById("deviceInfo").textContent = `You are using: ${deviceInfo}`;
+}
+
+// Call the function to display device info
+getUserDeviceInfo();
+
+</script>
+</body>
+</html>

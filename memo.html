@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .birthday-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .memo-container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .memo-container h1 {
+            color: #e91e63; /* Pinkish color for heading */
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        .memo-container p {
+            line-height: 1.6;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        .slider-container {
+            width: 90%;
+            max-width: 700px;
+            overflow: hidden;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 400px; /* Adjust as needed */
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .slider-nav button {
+            background: rgba(255, 255, 255, 0.8);
+            color: #333;
+            border: 1px solid #e91e63;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.2em;
+            transition: background 0.3s;
+        }
+
+        .slider-nav button:hover {
+            background: #e91e63;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .memo-container h1 {
+                font-size: 2em;
+            }
+            .memo-container p {
+                font-size: 1em;
+            }
+        }
+        /* music */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        #musicToggle {
+            padding: 0.8rem 1.5rem;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        #musicToggle:hover {
+            background: #ff1493;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+    </style>
+</head>
+<body>
+ <div class="birthday-container">
+    <div class="memo-container">
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a day filled with joy, laughter, and all your favorite things. May this year bring you countless blessings and unforgettable moments.</p>
+        <p>Happy Birthday to the most amazing girl! You deserve all the happiness in the world.</p>
+    </div>
+
+    <div class="slider-container">
+        <div class="slider" id="imageSlider">
+            <div class="slide" style="background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlscm0yYWl6YW5venpjb2dnbmhwcTVqYmY4dXcwamxoOGZhdGhzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcbH1ajIgeymtLn4fP/giphy.gif');"></div>
+            <div class="slide" style="background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlscm0yYWl6YW5venpjb2dnbmhwcTVqYmY4dXcwamxoOGZhdGhzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcbH1ajIgeymtLn4fP/giphy.gif');"></div>
+            <div class="slide" style="background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlscm0yYWl6YW5venpjb2dnbmhwcTVqYmY4dXcwamxoOGZhdGhzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcbH1ajIgeymtLn4fP/giphy.gif');"></div>
+        </div>
+        <div class="slider-nav">
+            <button onclick="prevSlide()">❮</button>
+            <button onclick="nextSlide()">❯</button>
+        </div>
+    </div>
+
+</div>
+
+    <script>
+        const slider = document.getElementById('imageSlider');
+        let slideIndex = 0;
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % slider.children.length;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            slideIndex = (slideIndex - 1 + slider.children.length) % slider.children.length;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Girl Landing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .birthday-container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .content {
+            font-size: 1.2em;
+        }
+
+        .waves-effect {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px 0;
+            border-radius: 25px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .waves-light {
+            background:  rgb(214, 37, 140);
+        }
+
+        .waves-dark {
+            background:  rgb(214, 37, 140);
+        }
+
+        .waves-effect:hover {
+            opacity: 0.8;
+        }
+
+        .gradient-text {
+            font-size: 3em;
+            animation: pulse 1.5s infinite;
+
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .birthday-cake {
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+            /* For Safari */
+            -moz-user-select: none;
+            /* For Firefox */
+            -ms-user-select: none;
+            /* For Internet Explorer/Edge */
+        }
+
+        .birthday-cake img {
+            -webkit-user-drag: none;
+            display: inline-block;
+            background-image: url('bg-cake.png');
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            /* Make image responsive */
+            max-width: 300px;
+            /* Limit max width */
+            border-radius: 10px;
+            /* Rounded corners */
+            margin: 20px 0;
+            /* Space around image */
+            filter: drop-shadow(0 0 0.75rem rgb(207, 77, 103));
+            /* background transpraent */
+        }
+
+        .date-time,
+        .birthday-info,
+        .age-info {
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+
+        /* Button*/
+        .btn {
+            display: block;
+            /* Make it a block-level element to take up the full width */
+            width: 90%;
+            /* Set the width to 80% */
+            max-width: 100%;
+            /* Ensure it doesn't exceed 100% of its parent */
+            color: white;
+            /* Default text color */
+            text-align: center;
+            /* Center the text */
+            padding: 10px 20px;
+            /* Add padding for spacing */
+            text-decoration: none;
+            /* Remove underline */
+            border-radius: 5px;
+            /* Add rounded corners */
+
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transition */
+        }
+
+        a {
+            text-decoration: none;
+            color:  #feb47b;
+        }
+
+
+
+
+        /* Optional "waves" effect (requires some JavaScript) */
+        .waves-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .waves-effect::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            /* Adjust ripple color */
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+        }
+
+        .waves-effect.waves-light::after {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .waves-effect.is-animating::after {
+            width: 200%;
+            height: 200%;
+            opacity: 1;
+        }
+
+        /* New letter styles */
+        .letter {
+            perspective: 1000px;
+            font-family: 'Courier New', Courier, monospace;
+            color: wheat;
+            padding: 0.5rem;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            row-gap: 0.5rem;
+
+        }
+
+        .letters span {
+            display: inline-block;
+            cursor: pointer;
+            user-select: none;
+            line-height: 0.5;
+            color: antiquewhite;
+            font-size: 10rem;
+        }
+
+        .letters span.active {
+            animation: jump 2s ease-in-out;
+            transform-origin: bottom left;
+        }
+
+        @keyframes jump {
+            0% {
+                transform: translate(0, 0) rotate(180deg);
+            }
+
+            25% {
+                transform: scale(2) translate(0, -150px);
+            }
+
+            75% {
+                transform: scale(1.1, 1.1) translate(0, 200px);
+            }
+
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        /* music */
+        .music-control {
+            /* position: fixed;
+            top: 20px;
+            right: 20px; */
+            position: sticky;
+            z-index: 1000;
+        }
+
+        #musicToggle {
+            padding: 0.8rem 1.5rem;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        #musicToggle:hover {
+            background: #ff1493;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+
+       
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="birthday-container">
+        <div class="container">
+        <audio  id="bgMusic" loop>
+            <source src="bg-sound.mp3" type="audio/mpeg">
+        </audio>
+        </div>
+        <div class="music-control">
+            <button id="musicToggle">🎵 Play Music</button>
+        </div>
+        <h2 class="container mb-4">Happy Birthday! 🎉</h2>
+
+        <p class="content mb-6">
+            🎄 I'm so excited to share my day with you!
+        </p>
+
+        <div class="btn">
+
+            <a class="waves-effect waves-dark w-100 hover:text-blue-500 text-white w-80" href="wish.html">Make a Wish</a>
+            <a class="waves-effect waves-dark w-100 hover:text-blue-500 text-white w-80" href="memo.html">Watch Memo</a>
+
+        </div>
+
+        <div class="gradient-text">
+            <div class="letter letters">
+                <span>P</span>
+                <span>O</span>
+                <span>E</span>
+                <span>T</span>
+                <span>H</span>
+                <span>U</span>
+            </div>
+        </div>
+        <div class="birthday-cake">
+            <img src="bd-cake.png" alt="Birthday Cake" />
+        </div>
+
+       
+
+        <div class="date-time" id="dateTime"></div> <!-- Placeholder for date/time -->
+        <div class="birthday-info" id="birthdayInfo"></div> <!-- Placeholder for birthday info -->
+        <div class="age-info" id="ageInfo"></div> <!-- Placeholder for age info -->
+    </div>
+
+    <script>
+        // Function to update the date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const formattedDate = now.toLocaleString('en-US', options);
+            document.getElementById('dateTime').innerText = `Current Date and Time: ${formattedDate}`;
+        }
+
+        // Function to calculate the next birthday
+        function updateBirthdayInfo() {
+            const birthday = new Date(1998, 2, 12); // March 12, 1998
+            const now = new Date();
+            let nextBirthday = new Date(now.getFullYear(), birthday.getMonth(), birthday.getDate());
+
+            // If the birthday has already occurred this year, set next birthday to next year
+            if (now > nextBirthday) {
+                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+            }
+
+            const timeDiff = nextBirthday - now;
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+            document.getElementById('birthdayInfo').innerText = `Next Birthday in: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds!`;
+        }
+
+        // Function to calculate and display age
+        function updateAgeInfo() {
+            const birthday = new Date(1998, 2, 12); // March 12, 1998
+            const now = new Date();
+            let age = now.getFullYear() - birthday.getFullYear();
+            const monthDifference = now.getMonth() - birthday.getMonth();
+
+            // Adjust age if birthday hasn't occurred yet this year
+            if (monthDifference < 0 || (monthDifference === 0 && now.getDate() < birthday.getDate())) {
+                age--;
+            }
+
+            document.getElementById('ageInfo').innerText = `Age: ${age} years old!`;
+        }
+
+        // Update date and time every second
+        setInterval(() => {
+            updateDateTime();
+            updateBirthdayInfo();
+            updateAgeInfo();
+        }, 1000);
+
+        // Initial calls to display immediately
+        updateDateTime();
+        updateBirthdayInfo();
+        updateAgeInfo();
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const card = document.querySelector('.birthday-container');
+
+            let isSwipeLeft = false;
+            let isSwipeRight = false;
+            let startX = 0;
+
+            card.addEventListener('mousedown', function (e) {
+                startX = e.clientX; // Store the starting X position
+                isSwipeLeft = false;
+                isSwipeRight = false;
+            });
+
+            card.addEventListener('mouseup', function (e) {
+                const endX = e.clientX; // Store the ending X position
+                const distance = endX - startX;
+
+                if (distance > 50) {
+                    isSwipeRight = true;
+                    alert("Swiped Right! 🎉");
+                    // Handle swipe right actions here
+                } else if (distance < -50) {
+                    isSwipeLeft = true;
+                    alert("Swiped Left! 🎂");
+                    // Handle swipe left actions here
+                }
+            });
+
+            card.addEventListener('mouseleave', function () {
+                isSwipeLeft = false;
+                isSwipeRight = false;
+            });
+
+            // Add click event to letters for jump animation
+            const letters = document.querySelectorAll('.letters span');
+            letters.forEach(letter => {
+                letter.addEventListener('click', () => {
+                    letter.classList.toggle('active');
+                    setTimeout(() => {
+                        letter.classList.remove('active');
+                    }, 2000); // Remove class after animation
+                });
+            });
+        });
+        const wavesElements = document.querySelectorAll('.waves-effect');
+
+        wavesElements.forEach(element => {
+            element.addEventListener('click', function (e) {
+                const ripple = this.querySelector('::after');
+                this.classList.add('is-animating');
+                setTimeout(() => {
+                    this.classList.remove('is-animating');
+                }, 500); // Match transition duration
+            });
+        });
+
+        // jump text 
+        const letters = document.querySelectorAll(".letters span");
+
+        letters.forEach((letter) => {
+            letter.addEventListener("click", (e) => {
+                e.target.classList.add("active");
+            });
+        });
+
+        // music
+
+        const music = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        musicToggle.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                musicToggle.textContent = '🔇 Pause Music';
+            } else {
+                music.pause();
+                musicToggle.textContent = '🎵 Play Music';
+            }
+        });
+
+        // ballon
+       
+
+    </script>
+
+</body>
+
+</html>
