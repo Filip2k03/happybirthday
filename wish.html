@@ -81,7 +81,7 @@
 
     <div class="birthday-container">
         <h1>Happy Birthday!</h1>
-        <p>Dear <span>Poe Thu Aung Ye</span>,</p>
+        <p>Dear <span id="birthdayName"></span>!</p>
         <p>On this special day, I want to wish you all the happiness in the world. You are a shining light in the lives of everyone around you, and today we celebrate you!</p>
         <p>May your day be filled with laughter, love, and unforgettable moments. You deserve all the wonderful things life has to offer.</p>
         <p>Happy Birthday to the most amazing girl!</p>
@@ -96,6 +96,15 @@
         </div>
     </div>
 <script>
+
+    // 
+
+    const storedName = localStorage.getItem('birthdayName');
+        // Update name in the card
+        if (storedName) {
+            document.getElementById('birthdayName').textContent = storedName;
+        }
+
   function releaseBalloons() {
     const balloonContainer = document.querySelector('.birthday-container'); // Ensure this targets the correct container
     const numberOfBalloons = 10; // Specify how many balloons to release
