@@ -287,9 +287,9 @@
 
        
 
-        <div class="date-time" id="dateTime"></div> <!-- Placeholder for date/time -->
-        <div class="birthday-info" id="birthdayInfo"></div> <!-- Placeholder for birthday info -->
-        <div class="age-info" id="ageInfo"></div> <!-- Placeholder for age info -->
+        <div class="date-time" id="dateTime"></div>
+        <div class="birthday-info" id="birthdayInfo"></div>
+        <div class="age-info" id="ageInfo"></div><!-- Placeholder for age info -->
     </div>
 
     <script>
@@ -302,28 +302,41 @@
             document.getElementById('birthdayName').textContent = storedName;
         }
 
-        // Update birthday calculation using stored birthdate
-        function updateBirthdayInfo() {
+        // Update date and time
+        const updateDateTime = () => {
+            const dateTime = document.getElementById('dateTime');
+            const now = new Date();
+            const options = {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZoneName: 'short'
+            };
+            dateTime.textContent = now.toLocaleString('en-US', options);
+        };
+
+        // Update birthday info
+        const updateBirthdayInfo = () => {
+            const birthdayInfo = document.getElementById('birthdayInfo');
             if (storedBirthdate) {
                 const birthday = new Date(storedBirthdate);
-                const now = new Date();
-                let nextBirthday = new Date(now.getFullYear(), birthday.getMonth(), birthday.getDate());
-
-                if (now > nextBirthday) {
-                    nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
-                }
-
-                const timeDiff = nextBirthday - now;
-                const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-                document.getElementById('birthdayInfo').innerText = `Next Birthday in: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds!`;
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                birthdayInfo.textContent = `Your birthday is on ${birthday.toLocaleString('en-US', options)}`;
             }
-        }
+        };
 
-        function updateAgeInfo() {
+        // Update age info
+        const updateAgeInfo = () => {
+            const ageInfo = document.getElementById('ageInfo');
             if (storedBirthdate) {
                 const birthday = new Date(storedBirthdate);
                 const now = new Date();
@@ -334,59 +347,12 @@
                     age--;
                 }
 
-                document.getElementById('ageInfo').innerText = `Age: ${age} years old!`;
+                ageInfo.textContent = `You are ${age} years old.`;
             }
-        }
+        };
+        
 
-        // Function to update the date and time
-        function updateDateTime() {
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-            const formattedDate = now.toLocaleString('en-US', options);
-            document.getElementById('dateTime').innerText = `Current Date and Time: ${formattedDate}`;
-        }
-
-        // Function to calculate the next birthday
-        function updateBirthdayInfo() {
-            const birthday = new Date(1998, 2, 12); // March 12, 1998
-            const now = new Date();
-            let nextBirthday = new Date(now.getFullYear(), birthday.getMonth(), birthday.getDate());
-
-            // If the birthday has already occurred this year, set next birthday to next year
-            if (now > nextBirthday) {
-                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
-            }
-
-            const timeDiff = nextBirthday - now;
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
-
-            document.getElementById('birthdayInfo').innerText = `Next Birthday in: ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds!`;
-        }
-
-        // Function to calculate and display age
-        function updateAgeInfo() {
-            const birthday = new Date(1998, 2, 12); // March 12, 1998
-            const now = new Date();
-            let age = now.getFullYear() - birthday.getFullYear();
-            const monthDifference = now.getMonth() - birthday.getMonth();
-
-            // Adjust age if birthday hasn't occurred yet this year
-            if (monthDifference < 0 || (monthDifference === 0 && now.getDate() < birthday.getDate())) {
-                age--;
-            }
-
-            document.getElementById('ageInfo').innerText = `Age: ${age} years old!`;
-        }
-
-        // Update date and time every second
-        setInterval(() => {
-            updateDateTime();
-            updateBirthdayInfo();
-            updateAgeInfo();
-        }, 1000);
+       
 
         // Initial calls to display immediately
         updateDateTime();
