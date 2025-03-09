@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday!</title>
     <style>
-         body {
+        body {
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, #ff7e5f, #feb47b);
             color: #fff;
             text-align: center;
             padding: 20px;
+            margin: 0;
         }
 
         .birthday-container {
@@ -23,7 +24,7 @@
         }
 
         .memo-container {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
             padding: 40px;
@@ -41,7 +42,7 @@
 
         .memo-container p {
             line-height: 1.6;
-            color: #333;
+            color: #fff; /* Changed to white for better contrast */
             font-size: 1.1em;
         }
 
@@ -52,6 +53,7 @@
             position: relative;
             border-radius: 15px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            margin: auto;
         }
 
         .slider {
@@ -100,7 +102,8 @@
                 font-size: 1em;
             }
         }
-        /* music */
+
+        /* Music Control */
         .music-control {
             position: fixed;
             top: 20px;
@@ -127,39 +130,49 @@
     </style>
 </head>
 <body>
- <div class="birthday-container">
-    <div class="memo-container">
-        <h1>Happy Birthday!</h1>
-        <p>Wishing you a day filled with joy, laughter, and all your favorite things. May this year bring you countless blessings and unforgettable moments.</p>
-        <p>Happy Birthday to the most amazing girl! You deserve all the happiness in the world.</p>
+    <div class="birthday-container">
+        <div class="memo-container">
+            <h1>Happy Birthday!</h1>
+            <p>Wishing you a day filled with joy, laughter, and all your favorite things. May this year bring you countless blessings and unforgettable moments.</p>
+            <p>Happy Birthday to the most amazing girl! You deserve all the happiness in the world.</p>
+        </div>
+
+        <!-- Uncomment to use the slider -->
+        <!-- <div class="slider-container">
+            <div class="slider" id="imageSlider">
+                <div class="slide" style="background-image: url('path/to/image1.jpg');"></div>
+                <div class="slide" style="background-image: url('path/to/image2.jpg');"></div>
+            </div>
+            <div class="slider-nav">
+                <button onclick="prevSlide()">❮</button>
+                <button onclick="nextSlide()">❯</button>
+            </div>
+        </div> -->
     </div>
 
-        <!-- <div class="slider" id="imageSlider">
-            <div class="image">
-                <img id="displayImage" src="" alt="Uploaded Image">
-              </div> -->
-       
-        
+    <div class="music-control">
+        <button id="musicToggle" onclick="toggleMusic()">Play Music</button>
     </div>
 
-</div>
+    <script>
+        function addImage() {
+            const input = document.getElementById('imageInput');
+            const file = input.files[0];
+            const displayImage = document.getElementById('displayImage');
 
-    <script> 
-    function addImage() {
-      const input = document.getElementById('imageInput');
-      const file = input.files[0];
-      const displayImage = document.getElementById('displayImage');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    displayImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+                input.value = ''; // Clear the input
+            }
+        }
 
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          displayImage.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-        input.value = ''; // Clear the input
-      }
-    }
+        function toggleMusic() {
+            // Implement music play/pause functionality here
+        }
     </script>
-
 </body>
 </html>
