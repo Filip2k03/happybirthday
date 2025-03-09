@@ -134,37 +134,31 @@
         <p>Happy Birthday to the most amazing girl! You deserve all the happiness in the world.</p>
     </div>
 
-    <div class="slider-container">
-        <div class="slider" id="imageSlider">
-            <div class="slide" style="background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlscm0yYWl6YW5venpjb2dnbmhwcTVqYmY4dXcwamxoOGZhdGhzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcbH1ajIgeymtLn4fP/giphy.gif');"></div>
-            <div class="slide" style="background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlscm0yYWl6YW5venpjb2dnbmhwcTVqYmY4dXcwamxoOGZhdGhzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcbH1ajIgeymtLn4fP/giphy.gif');"></div>
-            <div class="slide" style="background-image: url('https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHlscm0yYWl6YW5venpjb2dnbmhwcTVqYmY4dXcwamxoOGZhdGhzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ZcbH1ajIgeymtLn4fP/giphy.gif');"></div>
-        </div>
-        <div class="slider-nav">
-            <button onclick="prevSlide()">❮</button>
-            <button onclick="nextSlide()">❯</button>
-        </div>
+        <!-- <div class="slider" id="imageSlider">
+            <div class="image">
+                <img id="displayImage" src="" alt="Uploaded Image">
+              </div> -->
+       
+        
     </div>
 
 </div>
 
-    <script>
-        const slider = document.getElementById('imageSlider');
-        let slideIndex = 0;
+    <script> 
+    function addImage() {
+      const input = document.getElementById('imageInput');
+      const file = input.files[0];
+      const displayImage = document.getElementById('displayImage');
 
-        function nextSlide() {
-            slideIndex = (slideIndex + 1) % slider.children.length;
-            updateSlider();
-        }
-
-        function prevSlide() {
-            slideIndex = (slideIndex - 1 + slider.children.length) % slider.children.length;
-            updateSlider();
-        }
-
-        function updateSlider() {
-            slider.style.transform = `translateX(-${slideIndex * 100}%)`;
-        }
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          displayImage.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+        input.value = ''; // Clear the input
+      }
+    }
     </script>
 
 </body>
